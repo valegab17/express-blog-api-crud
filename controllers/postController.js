@@ -32,7 +32,21 @@ const show = (req, res) => {
 
 // Store
 const store = (req, res) => {
-    res.send('Nuova ricetta');
+    //creo un nuovo id incrementando di 1 quello vecchio
+   const newId = ricette[ricette.length -1].id +1;
+   //creo un nuovo oggetto
+   const newRecipe = {
+    id: newId,
+    title: req.body.title,
+    content: req.body.content,
+    tags: req.body.tags
+   }
+   //aggiungo la ricetta al ricettario
+   ricette.push(newRecipe);
+   //solito controllo
+   console.log(ricette);
+   //risposta json
+   res.status(201).json(newRecipe);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 };
 
 // Update

@@ -4,9 +4,10 @@ const express = require('express');
 const app = express();
 //gli passo una porta a cui accedere
 const port = 3000; 
+//mi aggiungo lo use per importare i nuovi dati passati da postman 
+app.use(express.json());
 //mi preparo già la comunicazione del router (gli dico ad app.js che esiste router.js)
 const postsRouter = require('./routes/router');
-
 //definisco la prima rotta
 app.get('/', (req, res) => {
     res.send('<h1>HOME</h1>');
