@@ -11,7 +11,23 @@ const index = (req, res) => {
 
 // Show (Messaggio di testo per ora)
 const show = (req, res) => {
-    res.send('Dettaglio ricetta ' + req.params.id);
+  
+        //recupero il mio id e lo trasformo in numero
+        const id = parseInt(req.params.id)
+        //uso il find
+        const post = ricette.find (post => post.id === id);
+        //eseguo il controllo 
+        if(!post){
+            //imposto lo stato 
+            res.status(404)
+            //restituisco un json con le altre informazioni 
+            return res.json({
+                error: "Not Found",
+                message: "Post not Found"
+            })
+        }
+        res.json(post);
+  
 };
 
 // Store
