@@ -47,7 +47,25 @@ const modify = (req, res) => {
 
 // Destroy
 const destroy = (req, res) => {
-    res.send('Elimina ricetta ' + req.params.id);
+    //recupero il parametro id
+    const id = parseInt(req.params.id)
+    //uso il find
+    const post = ricette.find(post => post.id === id);
+    //controllo
+    if(!post){
+        res.status(404);
+        return res.json({
+            status: 404,
+            error: "Not Found",
+            message: "Post non trovato"
+        })
+    }
+    ricette.splice(ricette.indexOf(post),1);
+
+    //stampo in console la lista aggiornata
+    console.log("Post eliminato. Lista aggiornata", ricette)
+    //ora informo Express restituendo lo status corretto
+    res.sendStatus(204) 
 };
 
 //  Esporto tutto l'oggetto
